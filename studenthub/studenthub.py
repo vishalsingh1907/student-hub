@@ -2,7 +2,6 @@ import reflex as rx
 
 
 class State(rx.State):
-    purchased_projects: list[str] = []
     resources_unlocked: bool = False
     report_text: str = ""
 
@@ -13,16 +12,16 @@ class State(rx.State):
         self.report_text = "This is a sample AI-generated report for your project."
 
 
+# ---------- HOME ----------
 def index():
     return rx.center(
         rx.vstack(
             rx.heading("Student Hub 🚀", size="9"),
             rx.text("Projects | Reports | Notes"),
 
-            rx.button(
-                "View Pricing",
-                on_click=rx.redirect("/pricing"),
-                color_scheme="blue"
+            rx.link(
+                rx.button("View Pricing", color_scheme="blue"),
+                href="/pricing"
             ),
 
             spacing="4"
@@ -31,6 +30,7 @@ def index():
     )
 
 
+# ---------- PRICING ----------
 def pricing():
     return rx.center(
         rx.vstack(
@@ -65,9 +65,9 @@ def pricing():
 
             rx.box(
                 rx.text("💻 Projects (₹49)"),
-                rx.button(
-                    "View Projects",
-                    on_click=rx.redirect("/projects")
+                rx.link(
+                    rx.button("View Projects"),
+                    href="/projects"
                 ),
                 padding="1em",
                 border="1px solid gray"
@@ -79,6 +79,7 @@ def pricing():
     )
 
 
+# ---------- PROJECTS ----------
 def projects():
     return rx.center(
         rx.vstack(
@@ -104,6 +105,7 @@ def projects():
     )
 
 
+# ---------- APP ----------
 app = rx.App()
 app.add_page(index)
 app.add_page(pricing, route="/pricing")
