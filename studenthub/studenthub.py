@@ -20,8 +20,9 @@ def index():
             rx.text("Projects | Reports | Notes"),
 
             rx.link(
-                rx.button("View Pricing", color_scheme="blue"),
-                href="/pricing"
+                "Go to Pricing",
+                href="/pricing/",
+                style={"color": "blue", "font_size": "20px"}
             ),
 
             spacing="4"
@@ -63,14 +64,10 @@ def pricing():
                 border="1px solid gray"
             ),
 
-            rx.box(
-                rx.text("💻 Projects (₹49)"),
-                rx.link(
-                    rx.button("View Projects"),
-                    href="/projects"
-                ),
-                padding="1em",
-                border="1px solid gray"
+            rx.link(
+                "Go to Projects",
+                href="/projects/",
+                style={"color": "blue", "font_size": "20px"}
             ),
 
             spacing="4"
@@ -99,6 +96,12 @@ def projects():
                 border="1px solid gray"
             ),
 
+            rx.link(
+                "Back to Home",
+                href="/",
+                style={"color": "blue", "font_size": "20px"}
+            ),
+
             spacing="4"
         ),
         height="100vh"
@@ -107,6 +110,6 @@ def projects():
 
 # ---------- APP ----------
 app = rx.App()
-app.add_page(index)
-app.add_page(pricing, route="/pricing")
-app.add_page(projects, route="/projects")
+app.add_page(index, route="/")
+app.add_page(pricing, route="/pricing/")
+app.add_page(projects, route="/projects/")
